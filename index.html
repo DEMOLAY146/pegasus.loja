@@ -3,236 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pegasus Representações - Loja de cigarros, sedas, fumos e acessórios">
+    <meta name="description" content="Pegasus Representações - Cigarros Premium">
+    
+    <!-- Meta tags para visualização bonita no WhatsApp -->
+    <meta property="og:title" content="PEGASUS REPRESENTAÇÕES">
+    <meta property="og:description" content="Cigarros premium: Dunhill, Rothmans e mais. Qualidade e entrega rápida!">
+    <meta property="og:image" content="https://i.ibb.co/KxncsGgR/ZMUGd.jpg">
+    <meta property="og:url" content="https://seuusuario.github.io/pegasus-representacoes">
+    <meta property="og:type" content="website">
+
     <title>PEGASUS REPRESENTAÇÕES</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="https://i.ibb.co/KxncsGgR/ZMUGd.jpg" type="image/jpeg">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
         
-        :root {
-            --primary: #d4af77;
-        }
+        :root { --primary: #d4af77; }
         
-        * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-        }
-        
-        .tail-container * {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-        
-        .logo-font {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .header {
-            background: linear-gradient(90deg, #111111, #1a1a1a);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-        }
-        
-        .category-bar {
-            background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
-            scrollbar-width: none;
-        }
+        * { transition: all 0.25s ease; }
         
         .product-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 30px 40px -15px rgba(212, 175, 119, 0.3);
         }
         
-        .cart-modal {
-            animation: slideUp 0.3s ease-out;
-        }
+        .header { background: linear-gradient(90deg, #111111, #1a1a1a); }
         
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
+        .whatsapp-pulse { animation: pulse 2s infinite; }
         
-        .whatsapp-pulse {
-            animation: pulse 2s infinite;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
     </style>
 </head>
-<body class="tail-container bg-zinc-950 text-zinc-100 min-h-screen">
+<body class="bg-zinc-950 text-zinc-100 min-h-screen">
+
     <!-- HEADER -->
-    <header class="header sticky top-0 z-50">
+    <header class="header sticky top-0 z-50 shadow-2xl">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo + Título -->
                 <div class="flex items-center gap-3">
                     <img src="https://i.ibb.co/KxncsGgR/ZMUGd.jpg" 
                          alt="Logo Pegasus" 
-                         class="w-12 h-12 object-contain rounded-full border-2 border-[#d4af77]">
+                         class="w-14 h-14 object-contain rounded-2xl border-2 border-[#d4af77]">
                     <div>
-                        <h1 class="logo-font text-3xl font-bold tracking-tighter text-[#d4af77]">PEGASUS</h1>
-                        <p class="text-xs text-zinc-400 -mt-1 tracking-[2px]">REPRESENTAÇÕES</p>
+                        <h1 class="text-3xl font-bold tracking-tighter text-[#d4af77]">PEGASUS</h1>
+                        <p class="text-xs text-zinc-400 -mt-1 tracking-widest">REPRESENTAÇÕES</p>
                     </div>
                 </div>
 
-                <!-- Título central (mobile esconde) -->
-                <div class="hidden md:block text-center">
-                    <h2 class="text-xl font-semibold text-white tracking-widest">PREMIUM • EXCLUSIVIDADE • QUALIDADE</h2>
-                </div>
-
-                <!-- Carrinho -->
                 <button onclick="toggleCart()" 
-                        class="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-white px-6 py-3 rounded-2xl border border-[#d4af77]/30 hover:border-[#d4af77]">
+                        class="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-3xl border border-[#d4af77]/30">
                     <i class="fa-solid fa-shopping-cart text-2xl"></i>
                     <span class="font-medium">Carrinho</span>
-                    <div id="cart-count" 
-                         class="bg-[#d4af77] text-zinc-900 text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
+                    <div id="cart-count" class="bg-[#d4af77] text-zinc-950 font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
                 </button>
             </div>
         </div>
 
-        <!-- BARRA DE CATEGORIAS -->
-        <div class="category-bar border-t border-zinc-800">
-            <div class="max-w-7xl mx-auto px-4 py-4 overflow-x-auto flex items-center gap-2 whitespace-nowrap scrollbar-hide">
-                <button onclick="selectCategory('all')" 
-                        id="cat-all"
-                        class="category-btn active px-8 py-3 bg-[#d4af77] text-zinc-950 font-semibold rounded-3xl text-sm flex items-center gap-2">
-                    <i class="fa-solid fa-store"></i>
-                    TODOS
-                </button>
-                
-                <button onclick="selectCategory('CIGARROS')" 
-                        id="cat-CIGARROS"
-                        class="category-btn px-8 py-3 hover:bg-zinc-800 text-white font-medium rounded-3xl text-sm flex items-center gap-2">
-                    <i class="fa-solid fa-smoking"></i>
-                    CIGARROS
-                </button>
-                
-                <button onclick="selectCategory('SEDAS')" 
-                        id="cat-SEDAS"
-                        class="category-btn px-8 py-3 hover:bg-zinc-800 text-white font-medium rounded-3xl text-sm flex items-center gap-2">
-                    <i class="fa-solid fa-scroll"></i>
-                    SEDAS
-                </button>
-                
-                <button onclick="selectCategory('FUMOS')" 
-                        id="cat-FUMOS"
-                        class="category-btn px-8 py-3 hover:bg-zinc-800 text-white font-medium rounded-3xl text-sm flex items-center gap-2">
-                    <i class="fa-solid fa-leaf"></i>
-                    FUMOS
-                </button>
-                
-                <button onclick="selectCategory('ACESSÓRIOS')" 
-                        id="cat-ACESSÓRIOS"
-                        class="category-btn px-8 py-3 hover:bg-zinc-800 text-white font-medium rounded-3xl text-sm flex items-center gap-2">
-                    <i class="fa-solid fa-fire"></i>
-                    ACESSÓRIOS
-                </button>
+        <!-- CATEGORIAS -->
+        <div class="bg-zinc-900 border-t border-zinc-800">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex gap-3 overflow-x-auto">
+                <button onclick="selectCategory('all')" id="cat-all" 
+                        class="category-btn active px-8 py-3 bg-[#d4af77] text-black font-semibold rounded-3xl text-sm">TODOS OS PRODUTOS</button>
+                <button onclick="selectCategory('CIGARROS')" id="cat-CIGARROS" 
+                        class="category-btn px-8 py-3 hover:bg-zinc-800 rounded-3xl text-sm">CIGARROS</button>
             </div>
         </div>
     </header>
 
-    <!-- SEARCH BAR -->
-    <div class="max-w-7xl mx-auto px-4 py-6">
+    <!-- BARRA DE PESQUISA -->
+    <div class="max-w-7xl mx-auto px-4 pt-6 pb-4">
         <div class="relative">
-            <input id="search-input" 
-                   type="text" 
-                   placeholder="🔎 Buscar produtos... (ex: Dunhill, Rothmans, seda...)"
+            <input id="search-input" type="text" placeholder="🔎 Buscar (Dunhill, Rothmans...)" 
                    onkeyup="if(event.key === 'Enter') filterProducts()"
-                   class="w-full bg-zinc-900 border border-zinc-700 focus:border-[#d4af77] text-white placeholder:text-zinc-400 rounded-3xl py-5 px-8 pl-14 text-lg outline-none">
-            <i onclick="filterProducts()" 
-               class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-[#d4af77] text-2xl cursor-pointer"></i>
+                   class="w-full bg-zinc-900 border border-zinc-700 focus:border-[#d4af77] rounded-3xl py-5 px-8 pl-14 text-lg outline-none">
+            <i onclick="filterProducts()" class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-[#d4af77] text-2xl cursor-pointer"></i>
         </div>
     </div>
 
     <!-- PRODUTOS -->
-    <main class="max-w-7xl mx-auto px-4 pb-12">
-        <div id="products-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Cards gerados via JavaScript -->
+    <main class="max-w-7xl mx-auto px-4 pb-16">
+        <div id="products-container" class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Gerados pelo JavaScript -->
         </div>
     </main>
 
-    <!-- CARRINHO MODAL -->
-    <div id="cart-modal" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-end md:items-center justify-center">
-        <div class="cart-modal bg-zinc-900 w-full max-w-2xl md:rounded-3xl rounded-t-3xl max-h-[90vh] overflow-hidden flex flex-col">
+    <!-- CARRINHO -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-end md:items-center justify-center">
+        <div class="bg-zinc-900 w-full max-w-lg md:max-w-2xl rounded-t-3xl md:rounded-3xl max-h-[90vh] flex flex-col">
+            <div class="p-6 border-b flex justify-between">
+                <h2 class="text-2xl font-semibold">Seu Carrinho</h2>
+                <button onclick="toggleCart()" class="text-4xl text-zinc-400 hover:text-white">✕</button>
+            </div>
+            <div id="cart-items" class="flex-1 p-6 overflow-auto"></div>
             
-            <!-- Header do carrinho -->
-            <div class="p-6 border-b border-zinc-800 flex items-center justify-between">
-                <h2 class="text-2xl font-semibold flex items-center gap-3">
-                    <i class="fa-solid fa-shopping-cart"></i>
-                    Seu Carrinho
-                </h2>
-                <button onclick="toggleCart()" class="text-3xl text-zinc-400 hover:text-white">✕</button>
-            </div>
-
-            <!-- Lista de itens -->
-            <div id="cart-items" class="flex-1 p-6 overflow-auto">
-                <!-- JS preenche aqui -->
-            </div>
-
-            <!-- Resumo + Botões -->
-            <div class="p-6 border-t border-zinc-800">
-                <div class="flex justify-between items-baseline mb-6">
-                    <span class="text-lg">Total</span>
-                    <span id="cart-total" class="text-3xl font-bold text-[#d4af77]">R$ 0,00</span>
+            <div class="p-6 border-t border-zinc-700">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-xl">Total</span>
+                    <span id="cart-total" class="text-4xl font-bold text-[#d4af77]">R$ 0,00</span>
                 </div>
-                
-                <div class="flex flex-col gap-3">
-                    <button onclick="backToShopping()" 
-                            class="py-5 text-lg font-semibold border-2 border-[#d4af77] text-[#d4af77] rounded-3xl hover:bg-[#d4af77] hover:text-zinc-950">
-                        ← CONTINUAR COMPRANDO
-                    </button>
-                    
-                    <button onclick="finalizeOrder()" 
-                            class="py-5 text-lg font-semibold bg-[#d4af77] text-zinc-950 rounded-3xl hover:scale-105 flex items-center justify-center gap-3">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        FINALIZAR PEDIDO NO WHATSAPP
-                    </button>
-                </div>
-                
-                <p class="text-center text-xs text-zinc-500 mt-4">
-                    Ao finalizar, o pedido será enviado diretamente para o nosso vendedor
-                </p>
+                <button onclick="finalizeOrder()" 
+                        class="w-full py-6 bg-green-600 hover:bg-green-500 rounded-3xl text-xl font-semibold flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    FINALIZAR PEDIDO NO WHATSAPP
+                </button>
+                <button onclick="toggleCart()" class="w-full mt-4 py-4 text-zinc-400">← Continuar Comprando</button>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-black py-8 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                
-                <!-- Falar com vendedor -->
-                <div class="flex items-center gap-4">
-                    <a href="https://wa.me/5527995065360?text=Olá!%20Vim%20pela%20loja%20virtual%20Pegasus%20Representações%20e%20gostaria%20de%20falar%20com%20o%20vendedor."
-                       target="_blank"
-                       class="whatsapp-pulse flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-8 py-5 rounded-3xl text-xl font-medium">
-                        <i class="fa-brands fa-whatsapp text-4xl"></i>
-                        <div>
-                            <span class="block">FALAR COM O VENDEDOR</span>
-                            <span class="text-sm opacity-75">(27) 99506-5360</span>
-                        </div>
-                    </a>
+    <!-- RODAPÉ -->
+    <footer class="bg-black py-10 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <a href="https://wa.me/5527995065360?text=Olá!%20Vim%20pela%20loja%20virtual%20Pegasus%20Representações." 
+               target="_blank"
+               class="whatsapp-pulse inline-flex items-center gap-4 bg-green-500 hover:bg-green-600 text-white px-10 py-6 rounded-3xl text-xl font-medium">
+                <i class="fa-brands fa-whatsapp text-4xl"></i>
+                <div>
+                    FALAR COM O VENDEDOR<br>
+                    <span class="text-sm">(27) 99506-5360</span>
                 </div>
-
-                <div class="text-center text-zinc-500 text-sm">
-                    © 2026 Pegasus Representações<br>
-                    <span class="text-xs">Cigarros • Sedas • Fumos • Acessórios</span>
-                </div>
-
-                <div class="text-zinc-600 text-xs flex items-center gap-2">
-                    <i class="fa-solid fa-lock"></i>
-                    Pagamento seguro via Pix ou dinheiro
-                </div>
-            </div>
+            </a>
+            <p class="text-xs text-zinc-500 mt-8">© 2026 Pegasus Representações</p>
         </div>
     </footer>
 
     <script>
-        // ==================== DADOS DOS PRODUTOS ====================
         const products = [
             {
                 id: 1,
@@ -254,211 +158,116 @@
                 category: "CIGARROS",
                 price: 83,
                 img: "https://i.ibb.co/fGnXNgvm/images-2.jpg"
-            },
-            // SEDAS
-            {
-                id: 4,
-                name: "Seda Zig Zag King Size",
-                category: "SEDAS",
-                price: 15,
-                img: "https://picsum.photos/id/1015/600/600"
-            },
-            {
-                id: 5,
-                name: "Seda RAW Black",
-                category: "SEDAS",
-                price: 18,
-                img: "https://picsum.photos/id/201/600/600"
-            },
-            {
-                id: 6,
-                name: "Seda OCB Premium",
-                category: "SEDAS",
-                price: 12,
-                img: "https://picsum.photos/id/251/600/600"
-            },
-            // FUMOS
-            {
-                id: 7,
-                name: "Fumo Natural Blend 50g",
-                category: "FUMOS",
-                price: 45,
-                img: "https://picsum.photos/id/301/600/600"
-            },
-            {
-                id: 8,
-                name: "Fumo Virginia Gold 100g",
-                category: "FUMOS",
-                price: 68,
-                img: "https://picsum.photos/id/401/600/600"
-            },
-            // ACESSÓRIOS
-            {
-                id: 9,
-                name: "Isqueiro Zippo Clássico",
-                category: "ACESSÓRIOS",
-                price: 120,
-                img: "https://picsum.photos/id/501/600/600"
-            },
-            {
-                id: 10,
-                name: "Piteira de Metal Premium",
-                category: "ACESSÓRIOS",
-                price: 35,
-                img: "https://picsum.photos/id/601/600/600"
-            },
-            {
-                id: 11,
-                name: "Moa de Alumínio 4 Partes",
-                category: "ACESSÓRIOS",
-                price: 55,
-                img: "https://picsum.photos/id/701/600/600"
             }
         ]
 
         let cart = []
         let currentCategory = 'all'
 
-        // ==================== TAILWIND INIT ====================
-        function initTailwind() {
-            tailwind.config = {
-                content: [],
-                theme: {
-                    extend: {
-                        colors: {
-                            primary: '#d4af77'
-                        }
-                    }
-                }
-            }
-        }
-
-        // ==================== RENDER PRODUTOS ====================
-        function renderProducts(filteredProducts) {
+        function renderProducts(filtered) {
             const container = document.getElementById('products-container')
             container.innerHTML = ''
 
-            if (filteredProducts.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-16">
-                        <i class="fa-solid fa-box-open text-6xl text-zinc-700 mb-4"></i>
-                        <p class="text-xl text-zinc-400">Nenhum produto encontrado</p>
-                        <button onclick="clearFilter()" class="mt-6 px-8 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-3xl text-sm">Ver todos os produtos</button>
-                    </div>`
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="col-span-full text-center py-20 text-zinc-400">Nenhum produto encontrado</p>`
                 return
             }
 
-            filteredProducts.forEach(product => {
-                const cardHTML = `
+            filtered.forEach(p => {
+                const html = `
                 <div class="product-card bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
-                    <div class="relative">
-                        <img src="${product.img}" 
-                             alt="${product.name}"
-                             class="w-full aspect-square object-cover">
-                        <div class="absolute top-4 right-4 bg-black/70 text-[#d4af77] text-xs font-bold px-3 py-1 rounded-2xl">
-                            R$ ${product.price},00
-                        </div>
-                    </div>
-                    
+                    <img src="${p.img}" class="w-full aspect-square object-cover">
                     <div class="p-5">
-                        <h3 class="font-semibold text-lg">${product.name}</h3>
-                        <p class="text-zinc-400 text-sm">${product.category}</p>
+                        <h3 class="font-semibold text-xl">${p.name}</h3>
+                        <p class="text-[#d4af77] text-2xl font-bold mt-1">R$ ${p.price},00</p>
                         
                         <div class="flex items-center gap-3 mt-6">
-                            <input type="number" id="qty-${product.id}" 
-                                   value="1" min="1" 
-                                   class="w-20 bg-zinc-800 border border-zinc-700 text-center rounded-2xl py-3 text-lg focus:border-[#d4af77] outline-none">
-                            
-                            <button onclick="addToCart(${product.id})" 
-                                    class="flex-1 bg-[#d4af77] hover:bg-amber-300 text-zinc-950 font-semibold py-3 rounded-2xl flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cart-plus"></i>
-                                <span>ADICIONAR</span>
+                            <input type="number" id="qty-${p.id}" value="1" min="1" 
+                                   class="w-20 bg-zinc-800 border border-zinc-700 text-center rounded-2xl py-4 text-lg">
+                            <button onclick="addToCart(${p.id})" 
+                                    class="flex-1 bg-[#d4af77] text-zinc-950 font-semibold py-4 rounded-2xl hover:bg-amber-300">
+                                <i class="fa-solid fa-cart-plus"></i> ADICIONAR
                             </button>
                         </div>
                     </div>
                 </div>`
-                container.innerHTML += cardHTML
+                container.innerHTML += html
             })
         }
 
-        // ==================== FILTRAR PRODUTOS ====================
         function filterProducts() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim()
-            
+            const term = document.getElementById('search-input').value.toLowerCase()
             let filtered = products
-            
-            // Filtra por categoria se alguma estiver selecionada
+
             if (currentCategory !== 'all') {
                 filtered = filtered.filter(p => p.category === currentCategory)
             }
-            
-            // Filtra por busca
-            if (searchTerm) {
-                filtered = filtered.filter(p => 
-                    p.name.toLowerCase().includes(searchTerm)
-                )
+            if (term) {
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(term))
             }
-            
             renderProducts(filtered)
         }
 
-        // ==================== SELECIONAR CATEGORIA ====================
-        function selectCategory(category) {
-            currentCategory = category
-            
-            // Remove active de todas
+        function selectCategory(cat) {
+            currentCategory = cat
             document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-[#d4af77]', 'text-zinc-950')
-                if (btn.id === `cat-${category}` || (category === 'all' && btn.id === 'cat-all')) {
-                    btn.classList.add('active', 'bg-[#d4af77]', 'text-zinc-950')
+                btn.classList.remove('active', 'bg-[#d4af77]', 'text-black')
+                if ((cat === 'all' && btn.id === 'cat-all') || btn.id === `cat-${cat}`) {
+                    btn.classList.add('active', 'bg-[#d4af77]', 'text-black')
                 }
             })
-            
             filterProducts()
         }
 
-        function clearFilter() {
-            document.getElementById('search-input').value = ''
-            currentCategory = 'all'
-            selectCategory('all')
-        }
-
-        // ==================== CARRINHO ====================
         function addToCart(id) {
             const product = products.find(p => p.id === id)
-            if (!product) return
-            
-            const qtyInput = document.getElementById(`qty-${id}`)
-            const quantity = parseInt(qtyInput ? qtyInput.value : 1) || 1
-            
-            // Verifica se já existe no carrinho
+            const qty = parseInt(document.getElementById(`qty-${id}`).value) || 1
+
             const existing = cart.find(item => item.id === id)
-            
             if (existing) {
-                existing.quantity += quantity
+                existing.quantity += qty
             } else {
-                cart.push({
-                    ...product,
-                    quantity: quantity
-                })
+                cart.push({ ...product, quantity: qty })
             }
-            
+
             updateCartCount()
             
-            // Feedback visual
-            const btns = document.querySelectorAll(`button[onclick="addToCart(${id})"]`)
-            if (btns.length) {
-                const originalText = btns[0].innerHTML
-                btns[0].innerHTML = `✅ ADICIONADO!`
-                setTimeout(() => {
-                    if (btns[0]) btns[0].innerHTML = originalText
-                }, 1200)
-            }
-            
-            // Abre o carrinho automaticamente após 800ms
-            setTimeout(() => {
-                if (cart.length > 0) toggleCart()
-            }, 800)
+            // Feedback
+            const notif = document.createElement('div')
+            notif.className = "fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-3xl shadow-xl"
+            notif.textContent = `${qty}x ${product.name} adicionado!`
+            document.body.appendChild(notif)
+            setTimeout(() => notif.remove(), 2000)
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((a, b) => a + b.quantity, 0)
+            document.getElementById('cart-count').textContent = count
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items')
+            container.innerHTML = ''
+            let total = 0
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity
+                total += itemTotal
+                container.innerHTML += `
+                <div class="flex gap-4 bg-zinc-800 rounded-2xl p-4 mb-4">
+                    <img src="${item.img}" class="w-20 h-20 object-cover rounded-xl">
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <h4 class="font-semibold">${item.name}</h4>
+                            <button onclick="removeFromCart(${item.id})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                        <p class="text-sm text-zinc-400">${item.quantity} unidade(s)</p>
+                        <p class="text-lg font-bold text-[#d4af77]">R$ ${itemTotal},00</p>
+                    </div>
+                </div>`
+            })
+
+            document.getElementById('cart-total').textContent = `R$ ${total},00`
         }
 
         function removeFromCart(id) {
@@ -467,140 +276,44 @@
             renderCart()
         }
 
-        function updateCartCount() {
-            const count = cart.reduce((sum, item) => sum + item.quantity, 0)
-            document.getElementById('cart-count').textContent = count
-        }
-
-        function renderCart() {
-            const container = document.getElementById('cart-items')
-            container.innerHTML = ''
-            
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-16">
-                        <i class="fa-solid fa-cart-shopping text-6xl text-zinc-700 mb-6"></i>
-                        <p class="text-xl">Seu carrinho está vazio</p>
-                        <p class="text-zinc-400 mt-2">Adicione alguns produtos incríveis!</p>
-                    </div>`
-                document.getElementById('cart-total').textContent = 'R$ 0,00'
-                return
-            }
-            
-            let total = 0
-            
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity
-                total += itemTotal
-                
-                const itemHTML = `
-                <div class="flex gap-4 bg-zinc-800 rounded-3xl p-4 mb-4">
-                    <img src="${item.img}" alt="${item.name}" class="w-20 h-20 object-cover rounded-2xl">
-                    <div class="flex-1">
-                        <div class="flex justify-between">
-                            <h4 class="font-semibold">${item.name}</h4>
-                            <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-400">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                        <p class="text-sm text-zinc-400">${item.category}</p>
-                        
-                        <div class="flex justify-between items-end mt-4">
-                            <div>
-                                <span class="text-xs text-zinc-400">Qtd: ${item.quantity}</span>
-                                <span class="block text-xl font-bold text-[#d4af77]">R$ ${itemTotal},00</span>
-                            </div>
-                            <span class="text-sm text-zinc-400">R$ ${item.price},00 un.</span>
-                        </div>
-                    </div>
-                </div>`
-                container.innerHTML += itemHTML
-            })
-            
-            document.getElementById('cart-total').innerHTML = `R$ <span class="text-4xl">${total},00</span>`
-        }
-
         function toggleCart() {
             const modal = document.getElementById('cart-modal')
             if (modal.classList.contains('hidden')) {
                 renderCart()
                 modal.classList.remove('hidden')
-                modal.classList.add('flex')
             } else {
                 modal.classList.add('hidden')
-                modal.classList.remove('flex')
             }
         }
 
-        function backToShopping() {
-            toggleCart()
-        }
-
-        // ==================== FINALIZAR PEDIDO (WHATSAPP) ====================
         function finalizeOrder() {
             if (cart.length === 0) return
-            
-            let message = `🚀 *PEDIDO PEGASUS REPRESENTAÇÕES*\n\n`
+
+            let msg = `🚀 *Novo Pedido - PEGASUS REPRESENTAÇÕES*\n\n`
             let total = 0
-            
+
             cart.forEach(item => {
-                const itemTotal = item.price * item.quantity
-                total += itemTotal
-                message += `*${item.quantity}x* ${item.name} → R$ ${itemTotal},00\n`
+                const subtotal = item.price * item.quantity
+                total += subtotal
+                msg += `*${item.quantity}x* ${item.name} — R$ ${subtotal},00\n`
             })
-            
-            message += `\n──────────────────\n`
-            message += `*TOTAL DO PEDIDO: R$ ${total},00*\n\n`
-            message += `✅ Enviado via loja virtual\n`
-            message += `📍 Pedido gerado em ${new Date().toLocaleString('pt-BR')}`
-            
-            const phone = '5527995065360'
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-            
-            // Fecha o modal
-            toggleCart()
-            
-            // Limpa carrinho
-            setTimeout(() => {
-                cart = []
-                updateCartCount()
-                
-                // Abre o WhatsApp
-                window.open(url, '_blank')
-                
-                // Feedback
-                const successHTML = `
-                <div class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-4 rounded-3xl shadow-2xl flex items-center gap-3 z-[9999]">
-                    <i class="fa-solid fa-check-circle text-3xl"></i>
-                    <div>
-                        <p class="font-bold">Pedido enviado para o WhatsApp!</p>
-                        <p class="text-sm opacity-90">Aguarde o vendedor confirmar.</p>
-                    </div>
-                </div>`
-                document.body.insertAdjacentHTML('beforeend', successHTML)
-                
-                setTimeout(() => {
-                    document.querySelector('.fixed.bottom-6')?.remove()
-                }, 5000)
-            }, 300)
-        }
 
-        // ==================== INICIALIZAÇÃO ====================
-        function initializeStore() {
-            initTailwind()
-            
-            // Renderiza todos os produtos inicialmente
-            renderProducts(products)
-            
-            // Atualiza contador do carrinho
+            msg += `\n*TOTAL:* R$ ${total},00\n`
+            msg += `📅 ${new Date().toLocaleString('pt-BR')}`
+
+            const url = `https://wa.me/5527995065360?text=${encodeURIComponent(msg)}`
+            window.open(url, '_blank')
+
+            cart = []
             updateCartCount()
-            
-            console.log('%c✅ Loja Pegasus Representações carregada com sucesso!', 'color:#d4af77; font-size:14px; font-weight:bold')
-            console.log('Hospedagem GitHub Pages pronta! Basta subir o arquivo index.html')
+            toggleCart()
         }
 
-        // Carrega tudo quando a página abrir
-        window.onload = initializeStore
+        // Inicialização
+        window.onload = () => {
+            renderProducts(products)
+            updateCartCount()
+        }
     </script>
 </body>
 </html>
