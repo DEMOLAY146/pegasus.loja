@@ -24,20 +24,13 @@
             flex-direction: column;
         }
         .product-img {
-            height: 220px; /* Reduzido */
+            height: 180px; /* Reduzido para caber melhor */
             object-fit: contain;
             background: #1a1a1a;
         }
         .logo-img {
-            width: 48px;
-            height: 48px;
-        }
-        .cart-icon {
-            font-size: 1.4rem;
-        }
-        .category-btn {
-            padding: 10px 16px;
-            font-size: 0.95rem;
+            width: 42px;
+            height: 42px;
         }
     </style>
 </head>
@@ -46,7 +39,7 @@
     <!-- HEADER -->
     <header class="sticky top-0 z-50 bg-black border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16"> <!-- Altura reduzida -->
+            <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-2">
                     <img src="https://i.ibb.co/KxncsGgR/ZMUGd.jpg" alt="Logo" class="logo-img rounded-2xl border border-[#d4af77]">
                     <div>
@@ -55,9 +48,9 @@
                     </div>
                 </div>
                 
-                <button onclick="toggleCart()" class="flex items-center gap-2 bg-zinc-900 px-4 py-2.5 rounded-3xl">
-                    <i class="fa-solid fa-shopping-cart cart-icon"></i>
-                    <span class="text-sm font-medium">Carrinho</span>
+                <button onclick="toggleCart()" class="flex items-center gap-2 bg-zinc-900 px-4 py-2 rounded-3xl">
+                    <i class="fa-solid fa-shopping-cart text-xl"></i>
+                    <span class="text-sm">Carrinho</span>
                     <div id="cart-count" class="bg-[#d4af77] text-black font-bold w-5 h-5 text-xs rounded-full flex items-center justify-center">0</div>
                 </button>
             </div>
@@ -84,8 +77,8 @@
 
     <!-- Produtos -->
     <main class="max-w-7xl mx-auto px-4 py-6">
-        <div id="products-container" class="grid grid-cols-2 gap-5">
-            <!-- JS -->
+        <div id="products-container" class="grid grid-cols-2 gap-4">
+            <!-- JS preenche -->
         </div>
     </main>
 
@@ -94,7 +87,7 @@
         <div class="bg-zinc-900 w-full rounded-t-3xl max-h-[85vh] flex flex-col">
             <div class="p-5 border-b flex justify-between">
                 <h2 class="text-xl font-semibold">Seu Carrinho</h2>
-                <button onclick="toggleCart()" class="text-3xl text-zinc-400">✕</button>
+                <button onclick="toggleCart()" class="text-3xl">✕</button>
             </div>
             <div id="cart-items" class="flex-1 overflow-auto p-5"></div>
             
@@ -138,15 +131,15 @@
                 const card = `
                 <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800">
                     <img src="${p.img}" class="product-img w-full">
-                    <div class="p-4 flex-1 flex flex-col">
-                        <h3 class="font-semibold text-lg">${p.name}</h3>
+                    <div class="p-3.5 flex-1 flex flex-col">
+                        <h3 class="font-semibold text-base leading-tight">${p.name}</h3>
                         <p class="text-[#d4af77] text-2xl font-bold mt-1">R$ ${p.price},00</p>
                         
-                        <div class="mt-auto pt-5 flex gap-2">
+                        <div class="mt-auto pt-4 flex gap-2">
                             <input type="number" id="qty-${p.id}" value="1" min="1" 
-                                   class="w-16 bg-zinc-800 text-center rounded-2xl text-lg py-3 border border-zinc-700">
+                                   class="w-14 bg-zinc-800 text-center rounded-2xl text-base py-3 border border-zinc-700">
                             <button onclick="addToCart(${p.id})" 
-                                    class="flex-1 bg-[#d4af77] text-zinc-950 font-semibold rounded-2xl text-sm">
+                                    class="flex-1 bg-[#d4af77] hover:bg-amber-300 text-zinc-950 font-semibold rounded-2xl text-sm py-3">
                                 ADICIONAR
                             </button>
                         </div>
@@ -204,10 +197,8 @@
         }
 
         function renderCart() {
-            // Implementação simplificada
             const container = document.getElementById('cart-items')
-            container.innerHTML = cart.length ? '' : '<p class="text-center text-zinc-400 py-10">Carrinho vazio</p>'
-            // ... (pode expandir depois)
+            container.innerHTML = cart.length ? '' : '<p class="text-center text-zinc-400 py-10">Seu carrinho está vazio</p>'
         }
 
         function finalizeOrder() {
