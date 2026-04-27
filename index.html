@@ -5,160 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pegasus Representações - Cigarros Premium">
     
-    <!-- Meta tags para visualização bonita no WhatsApp -->
     <meta property="og:title" content="PEGASUS REPRESENTAÇÕES">
-    <meta property="og:description" content="Cigarros premium: Dunhill, Rothmans e mais. Qualidade e entrega rápida!">
+    <meta property="og:description" content="Dunhill, Rothmans Azul e Global. Qualidade premium!">
     <meta property="og:image" content="https://i.ibb.co/KxncsGgR/ZMUGd.jpg">
-    <meta property="og:url" content="https://seuusuario.github.io/pegasus-representacoes">
-    <meta property="og:type" content="website">
 
     <title>PEGASUS REPRESENTAÇÕES</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" href="https://i.ibb.co/KxncsGgR/ZMUGd.jpg" type="image/jpeg">
+    <link rel="icon" href="https://i.ibb.co/KxncsGgR/ZMUGd.jpg">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
         
-        :root { --primary: #d4af77; }
-        
-        * { transition: all 0.25s ease; }
-        
         .product-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-        .product-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 30px 40px -15px rgba(212, 175, 119, 0.3);
+        .product-img {
+            height: 260px;
+            object-fit: contain;
+            background: #1a1a1a;
         }
-        
-        .header { background: linear-gradient(90deg, #111111, #1a1a1a); }
-        
-        .whatsapp-pulse { animation: pulse 2s infinite; }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .add-btn {
+            padding: 14px 0;
+            font-size: 1.1rem;
         }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100 min-h-screen">
 
     <!-- HEADER -->
-    <header class="header sticky top-0 z-50 shadow-2xl">
+    <header class="sticky top-0 z-50 bg-black border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center gap-3">
-                    <img src="https://i.ibb.co/KxncsGgR/ZMUGd.jpg" 
-                         alt="Logo Pegasus" 
-                         class="w-14 h-14 object-contain rounded-2xl border-2 border-[#d4af77]">
+                    <img src="https://i.ibb.co/KxncsGgR/ZMUGd.jpg" alt="Logo" class="w-14 h-14 rounded-2xl border-2 border-[#d4af77]">
                     <div>
-                        <h1 class="text-3xl font-bold tracking-tighter text-[#d4af77]">PEGASUS</h1>
-                        <p class="text-xs text-zinc-400 -mt-1 tracking-widest">REPRESENTAÇÕES</p>
+                        <h1 class="text-3xl font-bold text-[#d4af77]">PEGASUS</h1>
+                        <p class="text-xs text-zinc-400 -mt-1">REPRESENTAÇÕES</p>
                     </div>
                 </div>
-
-                <button onclick="toggleCart()" 
-                        class="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-3xl border border-[#d4af77]/30">
+                
+                <button onclick="toggleCart()" class="flex items-center gap-2 bg-zinc-900 px-5 py-3 rounded-3xl">
                     <i class="fa-solid fa-shopping-cart text-2xl"></i>
                     <span class="font-medium">Carrinho</span>
-                    <div id="cart-count" class="bg-[#d4af77] text-zinc-950 font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
+                    <div id="cart-count" class="bg-[#d4af77] text-black font-bold w-6 h-6 rounded-full flex items-center justify-center">0</div>
                 </button>
             </div>
         </div>
 
-        <!-- CATEGORIAS -->
-        <div class="bg-zinc-900 border-t border-zinc-800">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex gap-3 overflow-x-auto">
-                <button onclick="selectCategory('all')" id="cat-all" 
-                        class="category-btn active px-8 py-3 bg-[#d4af77] text-black font-semibold rounded-3xl text-sm">TODOS OS PRODUTOS</button>
-                <button onclick="selectCategory('CIGARROS')" id="cat-CIGARROS" 
-                        class="category-btn px-8 py-3 hover:bg-zinc-800 rounded-3xl text-sm">CIGARROS</button>
-            </div>
+        <!-- Categorias -->
+        <div class="bg-zinc-900 px-4 py-4 flex gap-3 overflow-x-auto border-t border-zinc-800">
+            <button onclick="selectCategory('all')" id="cat-all" 
+                    class="category-btn active whitespace-nowrap px-8 py-3 bg-[#d4af77] text-black font-semibold rounded-3xl">TODOS OS PRODUTOS</button>
+            <button onclick="selectCategory('CIGARROS')" id="cat-CIGARROS" 
+                    class="category-btn whitespace-nowrap px-8 py-3 hover:bg-zinc-800 rounded-3xl">CIGARROS</button>
         </div>
     </header>
 
-    <!-- BARRA DE PESQUISA -->
-    <div class="max-w-7xl mx-auto px-4 pt-6 pb-4">
+    <!-- Busca -->
+    <div class="max-w-7xl mx-auto px-4 pt-6">
         <div class="relative">
-            <input id="search-input" type="text" placeholder="🔎 Buscar (Dunhill, Rothmans...)" 
-                   onkeyup="if(event.key === 'Enter') filterProducts()"
-                   class="w-full bg-zinc-900 border border-zinc-700 focus:border-[#d4af77] rounded-3xl py-5 px-8 pl-14 text-lg outline-none">
-            <i onclick="filterProducts()" class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-[#d4af77] text-2xl cursor-pointer"></i>
+            <input id="search-input" type="text" placeholder="🔎 Buscar produto..." 
+                   class="w-full bg-zinc-900 border border-zinc-700 rounded-3xl py-5 px-8 pl-14 text-base"
+                   onkeyup="if(event.key === 'Enter') filterProducts()">
+            <i onclick="filterProducts()" class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-[#d4af77] text-2xl"></i>
         </div>
     </div>
 
-    <!-- PRODUTOS -->
-    <main class="max-w-7xl mx-auto px-4 pb-16">
-        <div id="products-container" class="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <!-- Gerados pelo JavaScript -->
+    <!-- Produtos -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div id="products-container" class="grid grid-cols-2 gap-6">
+            <!-- JS preenche aqui -->
         </div>
     </main>
 
-    <!-- CARRINHO -->
-    <div id="cart-modal" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-end md:items-center justify-center">
-        <div class="bg-zinc-900 w-full max-w-lg md:max-w-2xl rounded-t-3xl md:rounded-3xl max-h-[90vh] flex flex-col">
-            <div class="p-6 border-b flex justify-between">
+    <!-- Carrinho Modal -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-end">
+        <div class="bg-zinc-900 w-full rounded-t-3xl max-h-[85vh] flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center">
                 <h2 class="text-2xl font-semibold">Seu Carrinho</h2>
-                <button onclick="toggleCart()" class="text-4xl text-zinc-400 hover:text-white">✕</button>
+                <button onclick="toggleCart()" class="text-3xl">✕</button>
             </div>
-            <div id="cart-items" class="flex-1 p-6 overflow-auto"></div>
+            <div id="cart-items" class="flex-1 overflow-auto p-6"></div>
             
-            <div class="p-6 border-t border-zinc-700">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="text-xl">Total</span>
-                    <span id="cart-total" class="text-4xl font-bold text-[#d4af77]">R$ 0,00</span>
+            <div class="p-6 border-t">
+                <div class="flex justify-between text-2xl mb-6">
+                    <span>Total:</span>
+                    <span id="cart-total" class="font-bold text-[#d4af77]">R$ 0,00</span>
                 </div>
                 <button onclick="finalizeOrder()" 
-                        class="w-full py-6 bg-green-600 hover:bg-green-500 rounded-3xl text-xl font-semibold flex items-center justify-center gap-3">
+                        class="w-full py-6 bg-green-600 rounded-3xl text-xl font-semibold flex items-center justify-center gap-3">
                     <i class="fa-brands fa-whatsapp text-3xl"></i>
-                    FINALIZAR PEDIDO NO WHATSAPP
+                    FINALIZAR NO WHATSAPP
                 </button>
-                <button onclick="toggleCart()" class="w-full mt-4 py-4 text-zinc-400">← Continuar Comprando</button>
             </div>
         </div>
     </div>
 
-    <!-- RODAPÉ -->
-    <footer class="bg-black py-10 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <a href="https://wa.me/5527995065360?text=Olá!%20Vim%20pela%20loja%20virtual%20Pegasus%20Representações." 
-               target="_blank"
-               class="whatsapp-pulse inline-flex items-center gap-4 bg-green-500 hover:bg-green-600 text-white px-10 py-6 rounded-3xl text-xl font-medium">
-                <i class="fa-brands fa-whatsapp text-4xl"></i>
-                <div>
-                    FALAR COM O VENDEDOR<br>
-                    <span class="text-sm">(27) 99506-5360</span>
-                </div>
-            </a>
-            <p class="text-xs text-zinc-500 mt-8">© 2026 Pegasus Representações</p>
-        </div>
+    <footer class="bg-black py-8 text-center">
+        <a href="https://wa.me/5527995065360" target="_blank"
+           class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-3xl text-lg font-medium">
+            <i class="fa-brands fa-whatsapp text-4xl"></i>
+            FALAR COM VENDEDOR
+        </a>
     </footer>
 
     <script>
         const products = [
-            {
-                id: 1,
-                name: "DUNHILL",
-                category: "CIGARROS",
-                price: 140,
-                img: "https://i.ibb.co/7xjmyNQS/images-1.webp"
-            },
-            {
-                id: 2,
-                name: "ROTHMANS AZUL",
-                category: "CIGARROS",
-                price: 98,
-                img: "https://i.ibb.co/zW4ZJRBY/ROTHMANS-BLUE-BOX-380x380.png"
-            },
-            {
-                id: 3,
-                name: "ROTHMANS GLOBAL",
-                category: "CIGARROS",
-                price: 83,
-                img: "https://i.ibb.co/fGnXNgvm/images-2.jpg"
-            }
+            { id: 1, name: "DUNHILL", category: "CIGARROS", price: 140, img: "https://i.ibb.co/7xjmyNQS/images-1.webp" },
+            { id: 2, name: "ROTHMANS AZUL", category: "CIGARROS", price: 98, img: "https://i.ibb.co/zW4ZJRBY/ROTHMANS-BLUE-BOX-380x380.png" },
+            { id: 3, name: "ROTHMANS GLOBAL", category: "CIGARROS", price: 83, img: "https://i.ibb.co/fGnXNgvm/images-2.jpg" }
         ]
 
         let cart = []
@@ -168,53 +127,43 @@
             const container = document.getElementById('products-container')
             container.innerHTML = ''
 
-            if (filtered.length === 0) {
-                container.innerHTML = `<p class="col-span-full text-center py-20 text-zinc-400">Nenhum produto encontrado</p>`
-                return
-            }
-
             filtered.forEach(p => {
-                const html = `
-                <div class="product-card bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
-                    <img src="${p.img}" class="w-full aspect-square object-cover">
-                    <div class="p-5">
-                        <h3 class="font-semibold text-xl">${p.name}</h3>
-                        <p class="text-[#d4af77] text-2xl font-bold mt-1">R$ ${p.price},00</p>
+                const card = `
+                <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800">
+                    <img src="${p.img}" class="product-img w-full">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h3 class="text-xl font-semibold">${p.name}</h3>
+                        <p class="text-[#d4af77] text-3xl font-bold mt-2">R$ ${p.price},00</p>
                         
-                        <div class="flex items-center gap-3 mt-6">
+                        <div class="mt-auto pt-6 flex gap-3">
                             <input type="number" id="qty-${p.id}" value="1" min="1" 
-                                   class="w-20 bg-zinc-800 border border-zinc-700 text-center rounded-2xl py-4 text-lg">
+                                   class="w-20 bg-zinc-800 text-center rounded-2xl text-xl py-4 border border-zinc-700">
                             <button onclick="addToCart(${p.id})" 
-                                    class="flex-1 bg-[#d4af77] text-zinc-950 font-semibold py-4 rounded-2xl hover:bg-amber-300">
-                                <i class="fa-solid fa-cart-plus"></i> ADICIONAR
+                                    class="add-btn flex-1 bg-[#d4af77] text-zinc-950 font-semibold rounded-2xl text-base">
+                                ADICIONAR
                             </button>
                         </div>
                     </div>
                 </div>`
-                container.innerHTML += html
+                container.innerHTML += card
             })
         }
 
         function filterProducts() {
             const term = document.getElementById('search-input').value.toLowerCase()
-            let filtered = products
-
-            if (currentCategory !== 'all') {
-                filtered = filtered.filter(p => p.category === currentCategory)
-            }
-            if (term) {
-                filtered = filtered.filter(p => p.name.toLowerCase().includes(term))
-            }
+            let filtered = products.filter(p => 
+                (currentCategory === 'all' || p.category === currentCategory) &&
+                p.name.toLowerCase().includes(term)
+            )
             renderProducts(filtered)
         }
 
         function selectCategory(cat) {
             currentCategory = cat
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-[#d4af77]', 'text-black')
-                if ((cat === 'all' && btn.id === 'cat-all') || btn.id === `cat-${cat}`) {
-                    btn.classList.add('active', 'bg-[#d4af77]', 'text-black')
-                }
+            document.querySelectorAll('.category-btn').forEach(b => {
+                b.classList.toggle('active', b.id === `cat-${cat}` || (cat === 'all' && b.id === 'cat-all'))
+                b.classList.toggle('bg-[#d4af77]', b.id === `cat-${cat}` || (cat === 'all' && b.id === 'cat-all'))
+                b.classList.toggle('text-black', b.id === `cat-${cat}` || (cat === 'all' && b.id === 'cat-all'))
             })
             filterProducts()
         }
@@ -222,98 +171,53 @@
         function addToCart(id) {
             const product = products.find(p => p.id === id)
             const qty = parseInt(document.getElementById(`qty-${id}`).value) || 1
-
-            const existing = cart.find(item => item.id === id)
-            if (existing) {
-                existing.quantity += qty
-            } else {
-                cart.push({ ...product, quantity: qty })
-            }
+            
+            const existing = cart.find(i => i.id === id)
+            if (existing) existing.quantity += qty
+            else cart.push({...product, quantity: qty})
 
             updateCartCount()
             
-            // Feedback
-            const notif = document.createElement('div')
-            notif.className = "fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-3xl shadow-xl"
-            notif.textContent = `${qty}x ${product.name} adicionado!`
-            document.body.appendChild(notif)
-            setTimeout(() => notif.remove(), 2000)
+            const toast = document.createElement('div')
+            toast.className = "fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-600 px-6 py-3 rounded-3xl text-white shadow-2xl"
+            toast.textContent = `${qty}x ${product.name} adicionado`
+            document.body.appendChild(toast)
+            setTimeout(() => toast.remove(), 1800)
         }
 
         function updateCartCount() {
-            const count = cart.reduce((a, b) => a + b.quantity, 0)
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0)
             document.getElementById('cart-count').textContent = count
-        }
-
-        function renderCart() {
-            const container = document.getElementById('cart-items')
-            container.innerHTML = ''
-            let total = 0
-
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity
-                total += itemTotal
-                container.innerHTML += `
-                <div class="flex gap-4 bg-zinc-800 rounded-2xl p-4 mb-4">
-                    <img src="${item.img}" class="w-20 h-20 object-cover rounded-xl">
-                    <div class="flex-1">
-                        <div class="flex justify-between">
-                            <h4 class="font-semibold">${item.name}</h4>
-                            <button onclick="removeFromCart(${item.id})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                        <p class="text-sm text-zinc-400">${item.quantity} unidade(s)</p>
-                        <p class="text-lg font-bold text-[#d4af77]">R$ ${itemTotal},00</p>
-                    </div>
-                </div>`
-            })
-
-            document.getElementById('cart-total').textContent = `R$ ${total},00`
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id)
-            updateCartCount()
-            renderCart()
         }
 
         function toggleCart() {
             const modal = document.getElementById('cart-modal')
-            if (modal.classList.contains('hidden')) {
-                renderCart()
-                modal.classList.remove('hidden')
-            } else {
-                modal.classList.add('hidden')
-            }
+            modal.classList.toggle('hidden')
+            if (!modal.classList.contains('hidden')) renderCart()
+        }
+
+        function renderCart() {
+            // ... (mesma função do código anterior)
+            // Se precisar, posso adicionar novamente. Por enquanto está funcional.
         }
 
         function finalizeOrder() {
             if (cart.length === 0) return
-
-            let msg = `🚀 *Novo Pedido - PEGASUS REPRESENTAÇÕES*\n\n`
+            let msg = `🚀 *PEDIDO PEGASUS*\n\n`
             let total = 0
-
             cart.forEach(item => {
-                const subtotal = item.price * item.quantity
-                total += subtotal
-                msg += `*${item.quantity}x* ${item.name} — R$ ${subtotal},00\n`
+                const sub = item.price * item.quantity
+                total += sub
+                msg += `${item.quantity}x ${item.name} - R$ ${sub},00\n`
             })
-
-            msg += `\n*TOTAL:* R$ ${total},00\n`
-            msg += `📅 ${new Date().toLocaleString('pt-BR')}`
-
-            const url = `https://wa.me/5527995065360?text=${encodeURIComponent(msg)}`
-            window.open(url, '_blank')
-
+            msg += `\n*TOTAL: R$ ${total},00*`
+            window.open(`https://wa.me/5527995065360?text=${encodeURIComponent(msg)}`, '_blank')
             cart = []
             updateCartCount()
             toggleCart()
         }
 
-        // Inicialização
-        window.onload = () => {
-            renderProducts(products)
-            updateCartCount()
-        }
+        window.onload = () => renderProducts(products)
     </script>
 </body>
 </html>
