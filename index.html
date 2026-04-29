@@ -117,19 +117,19 @@
 
     <script>
         const products = [
-            // === CIGARROS ===
-            { id: 1, name: "DUNHILL", category: "CIGARROS", price: 140, img: "https://i.ibb.co/7xjmyNQS/images-1.webp" },
+            // CIGARROS
+            { id: 1, name: "DUNHILL", category: "CIGARROS", price: 140, img: "https://i.ibb.co/pv44zMYn/Whats-App-Image-2026-04-28-at-07-45-51-2.jpg" },
             { id: 2, name: "ROTHMANS AZUL", category: "CIGARROS", price: 98, img: "https://i.ibb.co/zW4ZJRBY/ROTHMANS-BLUE-BOX-380x380.png" },
             { id: 3, name: "ROTHMANS GLOBAL", category: "CIGARROS", price: 83, img: "https://i.ibb.co/fGnXNgvm/images-2.jpg" },
             { id: 4, name: "ROTHMANS VERMELHO", category: "CIGARROS", price: 95, img: "https://i.ibb.co/d4y0X5B2/188065-800-800.png" },
-            { id: 5, name: "LUCK STRIKE", category: "CIGARROS", price: 126, img: "https://i.ibb.co/hRK4019g/images.webp" },
-            { id: 6, name: "PANDORA AZUL BOX", category: "CIGARROS", price: 35, img: "https://i.ibb.co/rfsYVD0P/1777112143200.png" },
+            { id: 5, name: "LUCK STRIKE", category: "CIGARROS", price: 126, img: "https://i.ibb.co/YBsC6fVq/Whats-App-Image-2026-04-28-at-07-45-51.jpg" },
+            { id: 6, name: "PANDORA AZUL BOX", category: "CIGARROS", price: 35, img: "https://i.ibb.co/DH08n9dG/Whats-App-Image-2026-04-28-at-07-50-25.jpg" },
             { id: 7, name: "PANDORA MAÇO", category: "CIGARROS", price: 30, img: "https://i.ibb.co/KcDLFLT5/1777112276146.png" },
             { id: 8, name: "EGIPT BOX", category: "CIGARROS", price: 30, img: "https://i.ibb.co/P0Z7tVm/1777112584420.png" },
             { id: 9, name: "TOP TIM BOX", category: "CIGARROS", price: 30, img: "https://i.ibb.co/P0Z7tVm/1777112584420.png" },
             { id: 10, name: "CAMEL AZUL", category: "CIGARROS", price: 75, img: "https://i.ibb.co/j9pvf7Rq/cigarro-camel-blue-2501-1-1fa6895f432f3ccbd90e41cad9b72ef2-1.webp" },
             
-            // === SEDAS ===
+            // SEDAS
             { id: 11, name: "ZOMO BRANCA", category: "SEDAS", price: 50, img: "https://i.ibb.co/dsRJMd3z/caixa-de-seda-zomo-perfect-black-king-size-c-50-un-tabacaria-2485-1-26e93c3766a013b7cdb8d9b67dd4ecdb.jpg" },
             { id: 12, name: "ZOMO MARROM", category: "SEDAS", price: 50, img: "https://i.ibb.co/2rjLpx7/caixa-de-seda-zomo-brown-natural-perfect-king-size-c-50-1973-1-55dac4193e3886323d0e97fb0fe27e55.jpg" }
         ]
@@ -163,6 +163,7 @@
             })
         }
 
+        // Restante do código (mesmo do anterior - filtro, carrinho, etc.)
         function filterProducts() {
             const term = document.getElementById('search-input').value.toLowerCase()
             let filtered = products.filter(p => 
@@ -186,7 +187,6 @@
         function addToCart(id) {
             const product = products.find(p => p.id === id)
             const qty = parseInt(document.getElementById(`qty-${id}`).value) || 1
-            
             const existing = cart.find(item => item.id === id)
             if (existing) existing.quantity += qty
             else cart.push({ ...product, quantity: qty })
