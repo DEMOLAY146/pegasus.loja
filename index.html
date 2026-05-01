@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pegasus Representações - Cigarros e Sedas Premium">
+    <meta name="description" content="Pegasus Representações - Cigarros, Sedas e Fumos Premium">
     
     <meta property="og:title" content="PEGASUS REPRESENTAÇÕES">
-    <meta property="og:description" content="Cigarros e Sedas de qualidade!">
+    <meta property="og:description" content="Cigarros, Sedas, Piteiras e Fumos de qualidade!">
     <meta property="og:image" content="https://i.ibb.co/KxncsGgR/ZMUGd.jpg">
 
     <title>PEGASUS REPRESENTAÇÕES</title>
@@ -65,7 +65,9 @@
             <button onclick="selectCategory('CIGARROS')" id="cat-CIGARROS" 
                     class="category-btn whitespace-nowrap px-6 py-2.5 hover:bg-zinc-800 rounded-3xl text-sm">CIGARROS</button>
             <button onclick="selectCategory('SEDAS')" id="cat-SEDAS" 
-                    class="category-btn whitespace-nowrap px-6 py-2.5 hover:bg-zinc-800 rounded-3xl text-sm">SEDAS</button>
+                    class="category-btn whitespace-nowrap px-6 py-2.5 hover:bg-zinc-800 rounded-3xl text-sm">SEDAS E PITEIRAS</button>
+            <button onclick="selectCategory('FUMOS')" id="cat-FUMOS" 
+                    class="category-btn whitespace-nowrap px-6 py-2.5 hover:bg-zinc-800 rounded-3xl text-sm">FUMOS</button>
         </div>
     </header>
 
@@ -117,6 +119,7 @@
 
     <script>
         const products = [
+            // CIGARROS
             { id: 1, name: "CAMEL AZUL (PC10)", category: "CIGARROS", price: 85, img: "https://i.ibb.co/PGPFZ8Mk/Whats-App-Image-2026-05-01-at-06-40-26-removebg-preview.png" },
             { id: 10, name: "CAMEL BERRY CRAVO (PC10)", category: "CIGARROS", price: 85, img: "https://i.ibb.co/spc663GH/Whats-App-Image-2026-05-01-at-06-54-26-removebg-preview.png" },
             { id: 2, name: "DUNHILL (PC10)", category: "CIGARROS", price: 138, img: "https://i.ibb.co/HDx9LsC7/Whats-App-Image-2026-04-28-at-07-45-51-2-removebg-preview.png" },
@@ -134,11 +137,24 @@
             { id: 16, name: "GUDANG NACIONAL (PC10)", category: "CIGARROS", price: 215, img: "https://i.ibb.co/pvHDsCgJ/Whats-App-Image-2026-05-01-at-07-14-15-removebg-preview.png" },
             { id: 17, name: "BLACK MENTOL (PC10)", category: "CIGARROS", price: 205, img: "https://i.ibb.co/KjTRXhJc/Whats-App-Image-2026-05-01-at-07-21-20-removebg-preview.png" },
             { id: 18, name: "COYOTE (PC10)", category: "CIGARROS", price: 205, img: "https://i.ibb.co/PZCgrH9B/Whats-App-Image-2026-05-01-at-07-24-01-removebg-preview.png" },
-            { id: 19, name: "MANDELLE (PC10)", category: "CIGARROS", price: 215, img: "https://i.ibb.co/4wSkL2FM/Whats-App-Image-2026-05-01-at-07-31-57-removebg-preview.png" },
+            { id: 19, name: "MANDELLE (PC10)", category: "CIGARROS", price: 215, img: "https://i.ibb.co/xSwrFn9m/Whats-App-Image-2026-05-01-at-07-44-21-removebg-preview.png" },
             
-            // SEDAS
-            { id: 11, name: "ZOMO BRANCA", category: "SEDAS", price: 50, img: "https://i.ibb.co/dsRJMd3z/caixa-de-seda-zomo-perfect-black-king-size-c-50-un-tabacaria-2485-1-26e93c3766a013b7cdb8d9b67dd4ecdb.jpg" },
-            { id: 12, name: "ZOMO MARROM", category: "SEDAS", price: 50, img: "https://i.ibb.co/2rjLpx7/caixa-de-seda-zomo-brown-natural-perfect-king-size-c-50-1973-1-55dac4193e3886323d0e97fb0fe27e55.jpg" }
+            // SEDAS E PITEIRAS
+            { id: 11, name: "ZOMO BRANCA", category: "SEDAS", price: 50, img: "https://i.ibb.co/F4SSdTNN/Whats-App-Image-2026-05-01-at-07-51-16-removebg-preview.png" },
+            { id: 12, name: "ZOMO MARROM", category: "SEDAS", price: 50, img: "https://i.ibb.co/SXJSVN2F/Whats-App-Image-2026-05-01-at-07-51-17-removebg-preview.png" },
+            { id: 20, name: "BEM BELADO SLIM CX50", category: "SEDAS", price: 115, img: "https://i.ibb.co/Wv5vYpsw/Whats-App-Image-2026-05-01-at-08-07-52-1-removebg-preview-1.png" },
+            { id: 21, name: "BEM BELADO BROWN CX50", category: "SEDAS", price: 139, img: "https://i.ibb.co/6JpLXMcM/Whats-App-Image-2026-05-01-at-08-07-53-removebg-preview.png" },
+            { id: 22, name: "SADHU MORNING LONGA SLIM CX21", category: "SEDAS", price: 69, img: "https://i.ibb.co/MDw39YCF/Whats-App-Image-2026-05-01-at-08-07-52.jpg" },
+            { id: 23, name: "PITEIRA SADHU MORNING MEGA CX24", category: "SEDAS", price: 75, img: "https://i.ibb.co/gZvtRNkx/Whats-App-Image-2026-05-01-at-08-19-23-removebg-preview.png" },
+            { id: 24, name: "PITEIRA SADHU NIGHT MEGA CX24", category: "SEDAS", price: 75, img: "https://i.ibb.co/nNhKJ2xR/Whats-App-Image-2026-05-01-at-08-19-23-1-removebg-preview.png" },
+            { id: 25, name: "PITEIRA THE OG XL CX24", category: "SEDAS", price: 75, img: "https://i.ibb.co/Fkgttc16/Whats-App-Image-2026-05-01-at-08-19-22-removebg-preview.png" },
+            { id: 26, name: "PITEIRA SESH XL CX24", category: "SEDAS", price: 75, img: "https://i.ibb.co/d0bvnx8Z/Whats-App-Image-2026-05-01-at-08-19-23-2-removebg-preview.png" },
+            { id: 27, name: "PITEIRA SESH LARGE CX24", category: "SEDAS", price: 65, img: "https://i.ibb.co/3yCCVsdB/Whats-App-Image-2026-05-01-at-08-19-22-1-removebg-preview.png" },
+            
+            // FUMOS
+            { id: 28, name: "SABIA PT40", category: "FUMOS", price: 115, img: "https://i.ibb.co/wFBvxjT4/Whats-App-Image-2026-05-01-at-08-39-10-removebg-preview.png" },
+            { id: 29, name: "AMSTERDAN CX06", category: "FUMOS", price: 65, img: "https://i.ibb.co/xqQc7TtW/Whats-App-Image-2026-05-01-at-08-41-14-removebg-preview.png" },
+            { id: 30, name: "THE OG CX06", category: "FUMOS", price: 49, img: "https://i.ibb.co/nqx1cs11/Whats-App-Image-2026-05-01-at-08-41-15-removebg-preview.png" }
         ]
 
         let cart = []
