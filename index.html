@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pegasus Representações - Cigarros, Sedas, Piteiras e Fumos Premium">
     
-    <!-- Visualização do link no WhatsApp -->
+    <!-- Visualização do link no WhatsApp (apenas imagem) -->
     <meta property="og:title" content="PEGASUS REPRESENTAÇÕES">
-    <meta property="og:description" content="Cigarros, Sedas, Piteiras e Fumos de qualidade!">
-    <meta property="og:image" content="https://i.ibb.co/GQw46p7K/Whats-App-Image-2026-05-01-at-10-51-49.jpg">
+    <meta property="og:description" content="Cigarros, Sedas, Piteiras, Fumos e Acessórios">
+    <meta property="og:image" content="https://i.ibb.co/3ygz6rym/Mpgt-B-removebg-preview.png">
     <meta property="og:url" content="https://SEUUSUARIO.github.io/pegasus-representacoes">
     <meta property="og:type" content="website">
 
@@ -71,6 +71,8 @@
                     class="category-btn whitespace-nowrap px-6 py-2.5 hover:bg-zinc-800 rounded-3xl text-sm">SEDAS E PITEIRAS</button>
             <button onclick="selectCategory('FUMOS')" id="cat-FUMOS" 
                     class="category-btn whitespace-nowrap px-6 py-2.5 hover:bg-zinc-800 rounded-3xl text-sm">FUMOS</button>
+            <button onclick="selectCategory('ACESSORIOS')" id="cat-ACESSORIOS" 
+                    class="category-btn whitespace-nowrap px-6 py-2.5 hover:bg-zinc-800 rounded-3xl text-sm">ACESSÓRIOS</button>
         </div>
     </header>
 
@@ -112,16 +114,18 @@
         </div>
     </div>
 
+    <!-- RODAPÉ - Apenas a imagem como link -->
     <footer class="bg-black py-8 text-center">
-        <a href="https://wa.me/5527995065360" target="_blank"
-           class="inline-block bg-green-500 hover:bg-green-600 text-white p-5 rounded-full shadow-xl">
-            <i class="fa-brands fa-whatsapp text-5xl"></i>
+        <a href="https://wa.me/5527995065360" target="_blank">
+            <img src="https://i.ibb.co/3ygz6rym/Mpgt-B-removebg-preview.png" 
+                 alt="Falar no WhatsApp" 
+                 class="mx-auto w-40 h-40 object-contain rounded-3xl hover:scale-110 transition-transform">
         </a>
     </footer>
 
     <script>
         const products = [
-            // (Todos os produtos permanecem iguais à última versão)
+            // CIGARROS
             { id: 1, name: "CAMEL AZUL (PC10)", category: "CIGARROS", price: 85, img: "https://i.ibb.co/PGPFZ8Mk/Whats-App-Image-2026-05-01-at-06-40-26-removebg-preview.png" },
             { id: 10, name: "CAMEL BERRY CRAVO (PC10)", category: "CIGARROS", price: 85, img: "https://i.ibb.co/spc663GH/Whats-App-Image-2026-05-01-at-06-54-26-removebg-preview.png" },
             { id: 2, name: "DUNHILL (PC10)", category: "CIGARROS", price: 138, img: "https://i.ibb.co/HDx9LsC7/Whats-App-Image-2026-04-28-at-07-45-51-2-removebg-preview.png" },
@@ -156,7 +160,20 @@
             // FUMOS
             { id: 28, name: "SABIA PT40", category: "FUMOS", price: 115, img: "https://i.ibb.co/wFBvxjT4/Whats-App-Image-2026-05-01-at-08-39-10-removebg-preview.png" },
             { id: 29, name: "AMSTERDAN CX06", category: "FUMOS", price: 65, img: "https://i.ibb.co/xqQc7TtW/Whats-App-Image-2026-05-01-at-08-41-14-removebg-preview.png" },
-            { id: 30, name: "THE OG CX06", category: "FUMOS", price: 49, img: "https://i.ibb.co/nqx1cs11/Whats-App-Image-2026-05-01-at-08-41-15-removebg-preview.png" }
+            { id: 30, name: "THE OG CX06", category: "FUMOS", price: 49, img: "https://i.ibb.co/nqx1cs11/Whats-App-Image-2026-05-01-at-08-41-15-removebg-preview.png" },
+            
+            // ACESSÓRIOS
+            { id: 31, name: "SPLIFF SADHU NIGHT TESOURA+CUIA+PITEIRA", category: "ACESSORIOS", price: 34, img: "https://i.ibb.co/0jsNqfGK/Whats-App-Image-2026-05-02-at-00-34-08-removebg-preview.png" },
+            { id: 32, name: "SPLIFF SADHU EVENING TESOURA+CUIA+PITEIRA", category: "ACESSORIOS", price: 34, img: "https://i.ibb.co/gMkpZn0G/Whats-App-Image-2026-05-02-at-00-34-08-1-removebg-preview.png" },
+            { id: 33, name: "SPLIFF SADHU MORNING TESOURA+CUIA+PITEIRA", category: "ACESSORIOS", price: 34, img: "https://i.ibb.co/XfvdPt9X/foto-49170193-1.jpg" },
+            { id: 34, name: "SPLIFF SADHU NIGHT TESOURA+CUIA+PITEIRA", category: "ACESSORIOS", price: 34, img: "https://i.ibb.co/XfvdPt9X/foto-49170193-1.jpg" },
+            { id: 35, name: "MICRO BONG", category: "ACESSORIOS", price: 17, img: "https://i.ibb.co/9k6Qt4Mb/foto-31830793-removebg-preview.png" },
+            { id: 36, name: "PORTA ISQUEIRO PEQUENO", category: "ACESSORIOS", price: 13, img: "https://i.ibb.co/My1dVv4X/foto-30628133.jpg" },
+            { id: 37, name: "PORTA ISQUEIRO + CIGARRO", category: "ACESSORIOS", price: 16, img: "https://i.ibb.co/4nPSxsZr/foto-45732359-removebg-preview.png" },
+            { id: 38, name: "CIZEIRO AUTOMOTIVO", category: "ACESSORIOS", price: 14, img: "https://i.ibb.co/fdL1Wr51/7c2fda39-6e40-46b0-9a0b-8f2276225514-removebg-preview.png" },
+            { id: 39, name: "CIZEIRO AUTOMOTIVO", category: "ACESSORIOS", price: 14, img: "https://i.ibb.co/7d9drGS1/OIP.webp" },
+            { id: 40, name: "ISQUEIRO BIC CT12", category: "ACESSORIOS", price: 50, img: "https://i.ibb.co/7d9drGS1/OIP.webp" },
+            { id: 41, name: "CIZEIRO AUTOMOTIVO", category: "ACESSORIOS", price: 50, img: "https://i.ibb.co/jZ8XLyRQ/OIP-1-removebg-preview.png" }
         ]
 
         let cart = []
