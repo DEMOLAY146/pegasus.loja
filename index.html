@@ -42,24 +42,6 @@
             width: 55px;
             height: 55px;
         }
-
-        /* Modal de Zoom */
-        #zoom-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
-        }
-        #zoom-image {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            cursor: zoom-out;
-        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100 min-h-screen">
@@ -148,6 +130,7 @@
 
     <script>
         const products = [
+            // CIGARROS
             { id: 1, name: "CAMEL AZUL (PC10)", category: "CIGARROS", price: 85, img: "https://i.ibb.co/PGPFZ8Mk/Whats-App-Image-2026-05-01-at-06-40-26-removebg-preview.png" },
             { id: 10, name: "CAMEL BERRY CRAVO (PC10)", category: "CIGARROS", price: 85, img: "https://i.ibb.co/spc663GH/Whats-App-Image-2026-05-01-at-06-54-26-removebg-preview.png" },
             { id: 2, name: "DUNHILL (PC10)", category: "CIGARROS", price: 138, img: "https://i.ibb.co/HDx9LsC7/Whats-App-Image-2026-04-28-at-07-45-51-2-removebg-preview.png" },
@@ -184,17 +167,14 @@
             { id: 29, name: "AMSTERDAN CX06", category: "FUMOS", price: 65, img: "https://i.ibb.co/xqQc7TtW/Whats-App-Image-2026-05-01-at-08-41-14-removebg-preview.png" },
             { id: 30, name: "THE OG CX06", category: "FUMOS", price: 49, img: "https://i.ibb.co/nqx1cs11/Whats-App-Image-2026-05-01-at-08-41-15-removebg-preview.png" },
             
-            // ACESSÓRIOS
+            // ACESSÓRIOS (sem cizeiros)
             { id: 31, name: "SPLIFF SADHU NIGHT TESOURA+CUIA+PITEIRA", category: "ACESSORIOS", price: 34, img: "https://i.ibb.co/0jsNqfGK/Whats-App-Image-2026-05-02-at-00-34-08-removebg-preview.png" },
             { id: 32, name: "SPLIFF SADHU EVENING TESOURA+CUIA+PITEIRA", category: "ACESSORIOS", price: 34, img: "https://i.ibb.co/gMkpZn0G/Whats-App-Image-2026-05-02-at-00-34-08-1-removebg-preview.png" },
             { id: 33, name: "SPLIFF SADHU MORNING TESOURA+CUIA+PITEIRA", category: "ACESSORIOS", price: 34, img: "https://i.ibb.co/XfvdPt9X/foto-49170193-1.jpg" },
             { id: 35, name: "MICRO BONG", category: "ACESSORIOS", price: 17, img: "https://i.ibb.co/9k6Qt4Mb/foto-31830793-removebg-preview.png" },
             { id: 36, name: "PORTA ISQUEIRO PEQUENO", category: "ACESSORIOS", price: 13, img: "https://i.ibb.co/rKbt5Kg0/foto-30628133-removebg-preview-1.png" },
             { id: 37, name: "PORTA ISQUEIRO + CIGARRO", category: "ACESSORIOS", price: 16, img: "https://i.ibb.co/4nPSxsZr/foto-45732359-removebg-preview.png" },
-            { id: 38, name: "CIZEIRO AUTOMOTIVO", category: "ACESSORIOS", price: 14, img: "https://i.ibb.co/fdL1Wr51/7c2fda39-6e40-46b0-9a0b-8f2276225514-removebg-preview.png" },
-            { id: 39, name: "CIZEIRO AUTOMOTIVO", category: "ACESSORIOS", price: 14, img: "https://i.ibb.co/7d9drGS1/OIP.webp" },
-            { id: 40, name: "ISQUEIRO BIC CT12", category: "ACESSORIOS", price: 50, img: "https://i.ibb.co/7d9drGS1/OIP.webp" },
-            { id: 41, name: "CIZEIRO AUTOMOTIVO", category: "ACESSORIOS", price: 50, img: "https://i.ibb.co/jZ8XLyRQ/OIP-1-removebg-preview.png" },
+            { id: 40, name: "ISQUEIRO BIC CT12", category: "ACESSORIOS", price: 55, img: "https://i.ibb.co/7d9drGS1/OIP.webp" },
             { id: 42, name: "ISQUEIRO CHAMA CX 50", category: "ACESSORIOS", price: 50, img: "https://i.ibb.co/jZ8XLyRQ/OIP-1-removebg-preview.png" }
         ]
 
@@ -204,6 +184,7 @@
         function renderProducts(filtered) {
             const container = document.getElementById('products-container')
             container.innerHTML = ''
+
             filtered.forEach(p => {
                 const card = `
                 <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800">
@@ -211,9 +192,12 @@
                     <div class="p-3.5 flex-1 flex flex-col">
                         <h3 class="font-semibold text-base leading-tight">${p.name}</h3>
                         <p class="text-[#d4af77] text-2xl font-bold mt-1">R$ ${p.price},00</p>
+                        
                         <div class="mt-auto pt-4 flex gap-2">
-                            <input type="number" id="qty-${p.id}" value="1" min="1" class="w-14 bg-zinc-800 text-center rounded-2xl text-base py-3 border border-zinc-700">
-                            <button onclick="addToCart(${p.id})" class="flex-1 bg-[#d4af77] hover:bg-amber-300 text-zinc-950 font-semibold rounded-2xl text-sm py-3">
+                            <input type="number" id="qty-${p.id}" value="1" min="1" 
+                                   class="w-14 bg-zinc-800 text-center rounded-2xl text-base py-3 border border-zinc-700">
+                            <button onclick="addToCart(${p.id})" 
+                                    class="flex-1 bg-[#d4af77] hover:bg-amber-300 text-zinc-950 font-semibold rounded-2xl text-sm py-3">
                                 ADICIONAR
                             </button>
                         </div>
@@ -277,11 +261,13 @@
         function renderCart() {
             const container = document.getElementById('cart-items')
             container.innerHTML = ''
+
             if (cart.length === 0) {
                 container.innerHTML = `<p class="text-center text-zinc-400 py-12">Seu carrinho está vazio</p>`
                 document.getElementById('cart-total').textContent = 'R$ 0,00'
                 return
             }
+
             let total = 0
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity
@@ -327,7 +313,6 @@
             })
             msg += `\n*TOTAL: R$ ${total},00*`
             window.open(`https://wa.me/5527995065360?text=${encodeURIComponent(msg)}`, '_blank')
-            
             cart = []
             updateCartCount()
             toggleCart()
